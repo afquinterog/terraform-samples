@@ -235,6 +235,7 @@ function generate_vault_config {
   local -r auto_unseal_kms_key_id="${12}"
   local -r auto_unseal_kms_key_region="${13}"
   local -r auto_unseal_endpoint="${14}"
+  local -r dynamodb_table="${15}"
   local -r config_path="$config_dir/$VAULT_CONFIG_FILE"
 
   local instance_ip_address
@@ -406,6 +407,7 @@ function get_owner_of_path {
 }
 
 function run {
+  local dynamodb_table=""
   local tls_cert_file=""
   local tls_key_file=""
   local port="$DEFAULT_PORT"
@@ -664,7 +666,8 @@ function run {
         "$enable_auto_unseal" \
         "$auto_unseal_kms_key_id" \
         "$auto_unseal_kms_key_region" \
-        "$auto_unseal_endpoint"
+        "$auto_unseal_endpoint" \
+        "$dynamodb_table"
     fi
   fi
 
