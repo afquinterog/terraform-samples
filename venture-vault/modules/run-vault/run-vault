@@ -291,7 +291,7 @@ EOF
 
   local -r consul_storage=$(cat <<EOF
 $consul_storage_type "dynamodb" {
-  table = "venture_vault_stage"
+  table = "$dynamodb_table"
   read_capacity  = 5
   write_capacity = 5
 }
@@ -446,6 +446,10 @@ function run {
         ;;
       --tls-key-file)
         tls_key_file="$2"
+        shift
+        ;;
+      --dynamodb_table)
+        dynamodb_table="$2"
         shift
         ;;
       --port)
