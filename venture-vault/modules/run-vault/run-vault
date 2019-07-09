@@ -448,7 +448,7 @@ function run {
         tls_key_file="$2"
         shift
         ;;
-      --dynamodb_table)
+      --dynamodb-table)
         dynamodb_table="$2"
         shift
         ;;
