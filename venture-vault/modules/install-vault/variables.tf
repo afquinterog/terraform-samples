@@ -6,6 +6,10 @@ variable "aws_region" {
   default = "us-west-1"
 }
 
+variable "aws_zone" {
+  default = "us-west-1a"
+}
+
 variable "vpc_cidr" {
   type        = string
   description = "CIDR of the VPC"
