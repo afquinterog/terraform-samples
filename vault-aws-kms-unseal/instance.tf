@@ -9,7 +9,7 @@ resource "aws_kms_key" "vault" {
 
 data "aws_ami" "ubuntu" {
   most_recent = "true"
-  owners      = ["099720109477"]
+  owners      = ["ubuntu"]
 
   filter {
     name   = "image-id"
