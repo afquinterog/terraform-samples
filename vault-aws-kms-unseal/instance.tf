@@ -9,11 +9,11 @@ resource "aws_kms_key" "vault" {
 
 data "aws_ami" "ubuntu" {
   most_recent = "true"
-  owners      = ["ubuntu"]
+  owners      = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-18.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 
   filter {
