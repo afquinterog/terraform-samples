@@ -6,11 +6,11 @@ provider "aws" {
 #Ubuntu AMI reference
 data "aws_ami" "ubuntu" {
   most_recent = "true"
-  owners      = ["amazon"]
+  owners      = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-18.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 
   filter {
