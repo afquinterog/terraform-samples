@@ -1,3 +1,8 @@
+
+provider "aws" {
+  region = var.aws_region
+}
+
 #Ubuntu AMI reference
 data "aws_ami" "ubuntu" {
   most_recent = "true"
