@@ -9,8 +9,8 @@ data "aws_ami" "ubuntu" {
   owners      = ["amazon"]
 
   filter {
-    name   = "image-id"
-    values = ["ami-068670db424b01e9a"]
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-18.04-amd64-server-*"]
   }
 
   filter {
