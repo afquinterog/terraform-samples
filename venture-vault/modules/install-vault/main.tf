@@ -34,6 +34,39 @@ resource "random_pet" "env" {
   separator = "_"
 }
 
+resource "aws_security_group" "vault" {
+  name = "vault-kms-unseal-${random_pet.env.id}"
+  description = "vault access"
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "vault-kms-unseal-${random_pet.env.id}"
+  }
+
+  # SSH
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Vault Client Traffic
+  ingress {
+    from_port = 8200
+    to_port = 8200
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_vpc" "vpc" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
@@ -95,7 +128,7 @@ resource "aws_instance" "vault" {
 
   associate_public_ip_address = true
   ebs_optimized               = false
-  iam_instance_profile        = aws_iam_instance_profile.vault-kms-unseal.id
+  #iam_instance_profile        = aws_iam_instance_profile.vault-kms-unseal.id
 
   provisioner "file" {
     source      = "install-vault.sh"
