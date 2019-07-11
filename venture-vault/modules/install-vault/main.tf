@@ -148,13 +148,13 @@ resource "aws_instance" "vault" {
 
   provisioner "file" {
     source      = "run-vault.sh"
-    destination = "~/scripts/run-vault.sh"
+    destination = "home/ubuntu/scripts/run-vault.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/script.sh",
-      "chmod +x ~/scripts/run-vault.sh",
+      "chmod +x /home/ubuntu/scripts/run-vault.sh",
       "/tmp/script.sh --version ${var.vault_version}",
     ]
   }
