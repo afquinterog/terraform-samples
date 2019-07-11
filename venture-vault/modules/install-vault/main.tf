@@ -139,7 +139,7 @@ resource "aws_instance" "vault" {
     private_key = tls_private_key.main.private_key_pem
   }
 
-  user_data = data.template_file.vault.rendered
+  #user_data = data.template_file.vault.rendered
 
   provisioner "file" {
     source      = "install-vault.sh"

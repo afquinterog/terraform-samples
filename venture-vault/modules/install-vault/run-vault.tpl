@@ -16,7 +16,7 @@ readonly DEFAULT_LOG_LEVEL="info"
 
 readonly EC2_INSTANCE_METADATA_URL="http://169.254.169.254/latest/meta-data"
 
-
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly SCRIPT_NAME="$(basename "$0")"
 
 function print_usage {
