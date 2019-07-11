@@ -158,16 +158,16 @@ resource "aws_instance" "vault" {
   }
 }
 
-data "template_file" "vault" {
-  template = file("run-vault.tpl")
+# data "template_file" "vault" {
+#   template = file("run-vault.tpl")
 
-  vars = {
-    dynamo_table = var.dynamodb_table
-    #kms_key    = aws_kms_key.vault.id
-    #vault_url  = var.vault_url
-    #aws_region = var.aws_region
-  }
-}
+#   vars = {
+#     dynamo_table = var.dynamodb_table
+#     #kms_key    = aws_kms_key.vault.id
+#     #vault_url  = var.vault_url
+#     #aws_region = var.aws_region
+#   }
+#}
 
 
 
