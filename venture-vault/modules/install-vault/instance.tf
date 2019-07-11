@@ -15,6 +15,15 @@ data "aws_ami" "ubuntu" {
   }
 }
 
+resource "aws_kms_key" "vault" {
+  description             = "Vault unseal key"
+  deletion_window_in_days = 10
+
+  tags = {
+    Name = "vault-kms-unseal-${random_pet.env.id}"
+  }
+}
+
 #Create the instance
 resource "aws_instance" "vault" {
   ami           = data.aws_ami.ubuntu.id
@@ -68,6 +77,9 @@ data "template_file" "vault" {
 
   vars = {
     dynamodb_table = var.dynamodb_table
+    kms_key    = aws_kms_key.vault.id
+    aws_region = var.aws_region
+
     #kms_key    = aws_kms_key.vault.id
     #vault_url  = var.vault_url
     #aws_region = var.aws_region
