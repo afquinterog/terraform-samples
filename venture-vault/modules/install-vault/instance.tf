@@ -29,14 +29,13 @@ resource "aws_instance" "vault" {
 
   associate_public_ip_address = true
   ebs_optimized               = false
-  #iam_instance_profile        = aws_iam_instance_profile.vault-kms-unseal.id
+  iam_instance_profile        = aws_iam_instance_profile.vault-kms-unseal.id
 
   connection {
     type     = "ssh"
     user     = "ubuntu"
     password = ""
     host = self.public_ip
-    #private_key = "${file("~/.ssh/id_rsa")}"
     private_key = tls_private_key.main.private_key_pem
   }
 
