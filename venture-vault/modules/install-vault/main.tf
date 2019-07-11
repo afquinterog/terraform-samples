@@ -139,6 +139,8 @@ resource "aws_instance" "vault" {
     private_key = tls_private_key.main.private_key_pem
   }
 
+  user_data = data.template_file.vault.rendered
+
   provisioner "file" {
     source      = "install-vault.sh"
     destination = "/tmp/script.sh"
@@ -154,8 +156,17 @@ resource "aws_instance" "vault" {
   tags = {
     Name = "vault-instance-${random_pet.env.id}"
   }
+}
 
-  #user_data = data.template_file.vault.rendered
+data "template_file" "vault" {
+  template = file("run-vault.tpl")
+
+  vars = {
+    dynamo_table = var.dynamodb_table
+    #kms_key    = aws_kms_key.vault.id
+    #vault_url  = var.vault_url
+    #aws_region = var.aws_region
+  }
 }
 
 
