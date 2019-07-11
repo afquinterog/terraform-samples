@@ -583,6 +583,8 @@ function run {
     shift
   done
 
+
+
   # Required flags
   if [[ "$agent" == "true" ]]; then
     assert_not_empty "--agent-auth-type" "$agent_auth_type"
