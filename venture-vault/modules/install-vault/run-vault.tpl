@@ -16,7 +16,7 @@ readonly DEFAULT_LOG_LEVEL="info"
 
 readonly EC2_INSTANCE_METADATA_URL="http://169.254.169.254/latest/meta-data"
 
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly SCRIPT_NAME="$(basename "$0")"
 
 function print_usage {
@@ -586,6 +586,8 @@ function run {
 
   dynamodb_table=$${dynamodb_table}
   config_dir="/opt/vault/config"
+  bin_dir="/opt/vault/bin"
+  data_dir="/opt/vault/data"
 
 
   # Required flags
@@ -608,17 +610,17 @@ function run {
   assert_is_installed "jq"
 
   if [[ -z "$config_dir" ]]; then
-    config_dir=$(cd "$SCRIPT_DIR/../config" && pwd)
+    #config_dir=$(cd "$SCRIPT_DIR/../config" && pwd)
   fi
 
   # If $systemd_stdout and/or $systemd_stderr are empty, we leave them empty so that generate_systemd_config will use systemd's defaults (journal and inherit, respectively)
 
   if [[ -z "$bin_dir" ]]; then
-    bin_dir=$(cd "$SCRIPT_DIR/../bin" && pwd)
+    #bin_dir=$(cd "$SCRIPT_DIR/../bin" && pwd)
   fi
 
   if [[ -z "$data_dir" ]]; then
-    data_dir=$(cd "$SCRIPT_DIR/../data" && pwd)
+    #data_dir=$(cd "$SCRIPT_DIR/../data" && pwd)
   fi
 
   if [[ -z "$user" ]]; then
