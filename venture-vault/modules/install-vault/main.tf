@@ -134,6 +134,7 @@ resource "aws_instance" "vault" {
     type     = "ssh"
     user     = "ubuntu"
     password = ""
+    host = self.public_ip
     #private_key = "${file("~/.ssh/id_rsa")}"
     private_key = tls_private_key.main.private_key_pem
   }
