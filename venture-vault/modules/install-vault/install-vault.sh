@@ -114,6 +114,11 @@ function has_apt_get {
 }
 
 function install_dependencies {
+
+  until [[ -f /var/lib/cloud/instance/boot-finished ]]; do
+    sleep 1
+  done
+
   log_info "Installing dependencies"
 
   if $(has_apt_get); then
