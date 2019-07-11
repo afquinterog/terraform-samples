@@ -205,7 +205,8 @@ function install_binary {
   fi
 
   log_info "Copying Vault run script to $run_vault_dest_path"
-  sudo cp "$SCRIPT_DIR/../run-vault/run-vault" "$run_vault_dest_path"
+  sudo cp "/home/ubuntu/run-vault.sh" "$run_vault_dest_path"
+  sudo rm "/home/ubuntu/run-vault.sh"
   sudo chown "$username:$username" "$run_vault_dest_path"
   sudo chmod a+x "$run_vault_dest_path"
 }
