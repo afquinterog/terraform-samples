@@ -10,6 +10,9 @@ variable "vault_url" {
   default = "https://releases.hashicorp.com/vault/1.1.3/vault_1.1.3_linux_amd64.zip"
 }
 
+variable "dynamodb_uri" {
+}
+
 variable "dynamodb_table" {
 }
 
