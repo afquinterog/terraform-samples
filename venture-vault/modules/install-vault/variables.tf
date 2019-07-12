@@ -14,7 +14,7 @@ variable "dynamodb_table" {
   default = "vault-base-db"
 }
 
-variable "dynamodb_uri"{
+variable "dynamodb_uri" {
 }
 
 
