@@ -95,6 +95,7 @@ EOF
 
 cat << EOF > /etc/vault.d/vault.hcl
 storage "dynamodb" {
+  ha_enabled = "true"
   table = "${dynamodb_table}"
 }
 listener "tcp" {
