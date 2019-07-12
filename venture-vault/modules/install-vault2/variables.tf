@@ -11,11 +11,8 @@ variable "vault_url" {
 }
 
 variable "dynamodb_table" {
-  default = "https://releases.hashicorp.com/vault/1.1.3/vault_1.1.3_linux_amd64.zip"
 }
 
-variable "dynamodb_uri" {
-}
 
 variable "vpc_cidr" {
   type        = string
