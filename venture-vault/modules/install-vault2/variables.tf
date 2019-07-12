@@ -3,7 +3,7 @@ variable "aws_region" {
 }
 
 variable "aws_zone" {
-  default = "uus-west-1a"
+  default = "us-west-1a"
 }
 
 variable "vault_url" {
