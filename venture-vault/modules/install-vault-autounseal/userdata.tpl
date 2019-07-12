@@ -106,6 +106,7 @@ seal "awskms" {
   region     = "${aws_region}"
   kms_key_id = "${kms_key}"
 }
+api_addr      = "0.0.0.0:8200"
 ui=true
 EOF
 
