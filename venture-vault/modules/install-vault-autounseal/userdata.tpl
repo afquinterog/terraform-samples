@@ -7,10 +7,21 @@ USER="vault"
 COMMENT="Hashicorp vault user"
 GROUP="vault"
 HOME="/srv/vault"
+EC2_INSTANCE_METADATA_URL="http://169.254.169.254/latest/meta-data"
 
 # Detect package management system.
 YUM=$(which yum 2>/dev/null)
 APT_GET=$(which apt-get 2>/dev/null)
+
+
+function lookup_path_in_instance_metadata {
+  local -r path="$1"
+  curl --silent --location "$EC2_INSTANCE_METADATA_URL/$path/"
+}
+
+function get_instance_ip_address {
+  lookup_path_in_instance_metadata "local-ipv4"
+}
 
 user_rhel() {
   # RHEL user setup
@@ -93,6 +104,9 @@ Group=vault
 WantedBy=multi-user.target
 EOF
 
+
+#get instance ip address
+instance_ip_address=$(get_instance_ip_address)
 cat << EOF > /etc/vault.d/vault.hcl
 storage "dynamodb" {
   ha_enabled = "true"
@@ -106,7 +120,7 @@ seal "awskms" {
   region     = "${aws_region}"
   kms_key_id = "${kms_key}"
 }
-api_addr      = "0.0.0.0:8200"
+api_addr      = "${instance_ip_address}:8200"
 ui=true
 EOF
 
