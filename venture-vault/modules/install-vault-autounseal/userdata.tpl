@@ -23,6 +23,10 @@ function get_instance_ip_address {
   lookup_path_in_instance_metadata "local-ipv4"
 }
 
+function get_instance_public_ip_address {
+  lookup_path_in_instance_metadata "public-ipv4"
+}
+
 user_rhel() {
   # RHEL user setup
   sudo /usr/sbin/groupadd --force --system $${GROUP}
@@ -106,7 +110,7 @@ EOF
 
 
 #get instance ip address
-instance_ip_address=$(get_instance_ip_address)
+instance_ip_address=$(get_instance_public_ip_address)
 
 cat << EOF > /etc/vault.d/vault.hcl
 storage "dynamodb" {
