@@ -107,6 +107,7 @@ EOF
 
 #get instance ip address
 instance_ip_address=$(get_instance_ip_address)
+
 cat << EOF > /etc/vault.d/vault.hcl
 storage "dynamodb" {
   ha_enabled = "true"
@@ -120,7 +121,7 @@ seal "awskms" {
   region     = "${aws_region}"
   kms_key_id = "${kms_key}"
 }
-api_addr      = "${instance_ip_address}:8200"
+api_addr      = "$${instance_ip_address}:8200"
 ui=true
 EOF
 
