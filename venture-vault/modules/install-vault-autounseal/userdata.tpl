@@ -125,7 +125,7 @@ seal "awskms" {
   region     = "${aws_region}"
   kms_key_id = "${kms_key}"
 }
-api_addr      = "$${instance_ip_address}:8200"
+api_addr      = "https://$${instance_ip_address}:8200"
 ui=true
 EOF
 
