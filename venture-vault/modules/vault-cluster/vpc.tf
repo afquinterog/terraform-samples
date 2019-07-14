@@ -26,8 +26,20 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.vpc_cidr
+  #cidr_block              = var.vpc_cidr
+  cidr_block              = "10.0.1.0/24"
   availability_zone       = var.aws_zone
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "vault-venture-${random_pet.env.id}"
+  }
+}
+
+resource "aws_subnet" "subnet2" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = var.aws_zone2
   map_public_ip_on_launch = true
 
   tags = {
@@ -50,5 +62,10 @@ resource "aws_route_table" "route" {
 
 resource "aws_route_table_association" "route" {
   subnet_id      = aws_subnet.public_subnet.id
+  route_table_id = aws_route_table.route.id
+}
+
+resource "aws_route_table_association" "route2" {
+  subnet_id      = aws_subnet.subnet2.id
   route_table_id = aws_route_table.route.id
 }

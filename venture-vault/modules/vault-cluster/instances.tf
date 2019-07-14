@@ -35,7 +35,29 @@ resource "aws_security_group" "vault" {
 resource "aws_instance" "vault" {
   ami           = var.vault_ami
   instance_type = "t2.micro"
-  count         = 2
+  count         = 1
+  subnet_id     = aws_subnet.public_subnet.id
+  key_name      = "vault-venture-${random_pet.env.id}"
+
+  security_groups = [
+    aws_security_group.vault.id,
+  ]
+
+  associate_public_ip_address = true
+  ebs_optimized               = false
+  iam_instance_profile        = aws_iam_instance_profile.vault-venture.id
+
+  tags = {
+    Name = "vault-venture-${random_pet.env.id}"
+  }
+
+  #user_data = data.template_file.vault.rendered
+}
+
+resource "aws_instance" "vault2" {
+  ami           = var.vault_ami
+  instance_type = "t2.micro"
+  count         = 1
   subnet_id     = aws_subnet.public_subnet.id
   key_name      = "vault-venture-${random_pet.env.id}"
 
@@ -57,6 +79,7 @@ resource "aws_instance" "vault" {
 output "connections" {
   value = <<VAULT
 Connect to Vault via SSH   ssh ubuntu@${aws_instance.vault[0].public_ip} -i private.key
+Connect to Vault via SSH   ssh ubuntu@${aws_instance.vault[1].public_ip} -i private.key
 Vault web interface  http://${aws_instance.vault[0].public_ip}:8200/ui
 VAULT
 }
