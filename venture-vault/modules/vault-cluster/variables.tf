@@ -7,7 +7,7 @@ variable "aws_zone" {
 }
 
 variable "aws_zone2" {
-  default = "us-west-1b"
+  default = "us-west-1c"
 }
 
 variable "vpc_cidr" {
