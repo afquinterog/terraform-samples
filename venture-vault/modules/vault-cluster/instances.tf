@@ -58,7 +58,7 @@ resource "aws_instance" "vault2" {
   ami           = var.vault_ami
   instance_type = "t2.micro"
   count         = 1
-  subnet_id     = aws_subnet.public_subnet.id
+  subnet_id     = aws_subnet.subnet2.id
   key_name      = "vault-venture-${random_pet.env.id}"
 
   security_groups = [
