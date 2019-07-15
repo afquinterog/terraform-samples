@@ -53,13 +53,13 @@ resource "aws_lb_target_group" "venture" {
 
 resource "aws_lb_target_group_attachment" "venture-vault-1" {
   target_group_arn = aws_lb_target_group.venture.arn
-  target_id        = aws_instance.vault.id
+  target_id        = aws_instance.vault[0].id
   port             = 8200
 }
 
 resource "aws_lb_target_group_attachment" "venture-vault-2" {
   target_group_arn = aws_lb_target_group.venture.arn
-  target_id        = aws_instance.vault2.id
+  target_id        = aws_instance.vault2[0].id
   port             = 8200
 }
 
