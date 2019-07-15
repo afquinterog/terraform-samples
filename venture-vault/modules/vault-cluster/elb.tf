@@ -1,5 +1,4 @@
 resource "aws_security_group" "elb" {
-  name = "vault-venture-elb-${random_pet.env.id}"
   description = "Vault venture ELB"
   vpc_id = aws_vpc.vpc.id
 
@@ -24,7 +23,6 @@ resource "aws_security_group" "elb" {
 }
 
 resource "aws_lb" "venture" {
-  name               = "vault-venture-${random_pet.env.id}"
   internal           = false
   load_balancer_type = "application"
 
@@ -40,15 +38,20 @@ resource "aws_lb" "venture" {
   enable_deletion_protection = true
 
   tags = {
+    Name = "vault-venture-${random_pet.env.id}"
     Environment = "vault-venture-${random_pet.env.id}"
   }
 }
 
 resource "aws_lb_target_group" "venture" {
-  name     = "vault-venture-${random_pet.env.id}"
   port     = 8200
   protocol = "HTTP"
   vpc_id   = aws_vpc.vpc.id
+
+  tags = {
+    Name = "vault-venture-${random_pet.env.id}"
+  }
+
 }
 
 resource "aws_lb_target_group_attachment" "venture-vault-1" {
