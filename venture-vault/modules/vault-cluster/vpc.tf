@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_subnet" "public_subnet" {
+resource "aws_subnet" "subnet1" {
   vpc_id                  = aws_vpc.vpc.id
   #cidr_block              = var.vpc_cidr
   cidr_block              = "10.0.1.0/24"
@@ -61,7 +61,7 @@ resource "aws_route_table" "route" {
 }
 
 resource "aws_route_table_association" "route" {
-  subnet_id      = aws_subnet.public_subnet.id
+  subnet_id      = aws_subnet.subnet1.id
   route_table_id = aws_route_table.route.id
 }
 
