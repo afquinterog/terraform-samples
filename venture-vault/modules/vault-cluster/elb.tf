@@ -31,8 +31,8 @@ resource "aws_lb" "venture" {
   ]
 
   subnets = [
-    aws_subnet.subnet1.id,
-    aws_subnet.subnet2.id,
+    aws_subnet.public_subnet1.id,
+    aws_subnet.public_subnet2.id,
   ]
 
   enable_deletion_protection = false
