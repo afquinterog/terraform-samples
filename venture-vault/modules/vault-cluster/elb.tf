@@ -48,6 +48,16 @@ resource "aws_lb_target_group" "venture" {
   protocol = "HTTP"
   vpc_id   = aws_vpc.vpc.id
 
+  health_check {
+    path = "/v1/sys/health"
+    port = 8200
+    healthy_threshold = 3
+    unhealthy_threshold = 2
+    timeout = 2
+    interval = 5
+    matcher = "200"  # has to be HTTP 200 or fails
+  }
+
   tags = {
     Name = "vault-venture-${random_pet.env.id}"
   }
