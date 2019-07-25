@@ -43,7 +43,7 @@ resource "aws_instance" "vault" {
     aws_security_group.vault.id,
   ]
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   ebs_optimized               = false
   iam_instance_profile        = aws_iam_instance_profile.vault-venture.id
 
@@ -65,7 +65,7 @@ resource "aws_instance" "vault2" {
     aws_security_group.vault.id,
   ]
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   ebs_optimized               = false
   iam_instance_profile        = aws_iam_instance_profile.vault-venture.id
 
