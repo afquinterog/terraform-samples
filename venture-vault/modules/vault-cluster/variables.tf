@@ -2,7 +2,7 @@ variable "aws_region" {
   default = "us-west-1"
 }
 
-variable "aws_zone" {
+variable "aws_zone1" {
   default = "us-west-1a"
 }
 
