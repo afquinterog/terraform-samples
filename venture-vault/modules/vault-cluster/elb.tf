@@ -35,7 +35,7 @@ resource "aws_lb" "venture" {
     aws_subnet.subnet2.id,
   ]
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   tags = {
     Name = "vault-venture-${random_pet.env.id}"

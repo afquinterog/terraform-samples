@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_eip" "nat_ip" {
+resource "aws_eip" "nat" {
   vpc      = true
   depends_on = ["aws_internet_gateway.gw"]
 }
