@@ -31,7 +31,7 @@ resource "aws_eip" "nat" {
 
 resource "aws_nat_gateway" "gw" {
   allocation_id = "${aws_eip.nat.id}"
-  subnet_id = "${aws_subnet.public_subnet.id}"
+  subnet_id = "${aws_subnet.public_subnet1.id}"
   depends_on = ["aws_internet_gateway.gw"]
 }
 
