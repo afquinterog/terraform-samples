@@ -1,13 +1,13 @@
 variable "aws_region" {
-  default = "us-west-1"
+  default = "us-east-2"
 }
 
 variable "aws_zone1" {
-  default = "us-west-1a"
+  default = "us-east-2a"
 }
 
 variable "aws_zone2" {
-  default = "us-west-1c"
+  default = "us-east-2b"
 }
 
 variable "vpc_cidr" {
